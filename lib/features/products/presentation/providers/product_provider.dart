@@ -1,5 +1,3 @@
-//TODO: Criar provedor de dados para produtos
-
 import 'package:from_zero_to_hero_ht/features/products/data/product_repository_impl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

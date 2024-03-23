@@ -17,14 +17,12 @@ class ProductRepositoryImpl implements ProductRepository {
     return [for (final category in response.data as List) category.toString()];
   }
 
+  // Incluimos o método que faz a requisição e conersão da resposta para uma lista de Products.
   @override
   Future<List<Product>> findAllByCategories(String category) async {
     final response = await dio.get('/category/$category');
 
-    return [
-      for (final product in response.data['products'] as List)
-        Product.fromJson(product)
-    ];
+    return [for (final product in response.data['products'] as List) Product.fromJson(product)];
   }
 }
 

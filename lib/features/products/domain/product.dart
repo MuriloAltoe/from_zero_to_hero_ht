@@ -1,6 +1,3 @@
-//TODO: Criar classe de dominio de produtos
-
-//TODO: Modelar classe para deserializacao dom Freezed
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'product.freezed.dart';

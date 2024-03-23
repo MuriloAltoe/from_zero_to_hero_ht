@@ -248,7 +248,7 @@ FutureOr<List<String>> categories(CategoriesRef ref) async {
 
 Execute o `build_runner` para gerar os providers.
 ```dart
-art run build_runner build -d
+dart run build_runner build -d
 ```
 
 > Neste ponto já temos o necessário para realizar a requisição para as caterias e inclui-la na tela de categorias.
@@ -299,7 +299,7 @@ class CategoryPage extends ConsumerWidget {
 }
 ```
 
-4. Faça com que ao ouvir os estados do provedor (Sucesso, Erro, carregamento) a tela seja atualizada. Precisaremos incluir o `ListView.builder()` seja criado em caso de sucesso da requisição de categorias. Realize as alterações abaixo.
+4. Faça com que ao ouvir os estados do provedor (Sucesso, Erro, Carregamento) a tela seja atualizada. Precisaremos incluir o `ListView.builder()` seja criado em caso de sucesso da requisição de categorias. Observe o código abaixo.
 
 > No `body` iremos substitur o conteudo anterior por um código semelhante ao trecho abaixo. Este trecho retorna para a tela um Widget diferente para cada estado [`sucesso`, `erro`, `carregamento`]
 
@@ -523,6 +523,15 @@ FutureOr<List<Product>> productsByCategory(ProductsByCategoryRef ref,
   return products;
 }
 ```
+
+5. Execute o build_runner.
+
+> Cada novo provider criado devemos executar o build_runner, porém existe a possibilidade te trocarmos o parametro -d por watch, com o watch a IDE irá monitorar as alterações e irá recompilar e gerar as dependencias automaticamente, aí fica a seu critério a urilização do watch.
+
+```dart
+dart run build_runner build -d
+```
+
 > Mesmo procedimento da tela anterior, a tela irá observar este provedor.
 
 5. Execute o build_runner.
@@ -563,14 +572,14 @@ class ProductBycategoryConsumer extends ConsumerWidget {
         appBar: AppBar(
           title: const Text('Products By Category'),
         ),
-        //4. Uso do AsyncStare do provider como na tela anterior
+        //4. Uso do AsyncState do provider assim como na tela anterior
         body: products.when(
           data: (data) {
             return ListView.builder(
               itemCount: data.length,
               itemBuilder: (context, index) {
                 final product = data[index];
-                //TODO: Implementem os cards com base na especificacao do M3.
+                //TODO: Implementar os cards com base na especificacao do M3.
                 return Card(
                   child: ListTile(
                     title: Text(product.title),
