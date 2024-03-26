@@ -17,6 +17,7 @@ class ProductBycategoryConsumer extends ConsumerWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Products By Category'),
+          backgroundColor: Colors.amber,
         ),
         //4. Uso do AsyncStare do provider como na tela anterior
         body: products.when(
@@ -27,8 +28,31 @@ class ProductBycategoryConsumer extends ConsumerWidget {
                 final product = data[index];
                 //TODO: Implementem os cards com base na especificacao do M3.
                 return Card(
+                  elevation: 1,
                   child: ListTile(
+                    leading: Image.network(
+                      product.thumbnail,
+                      width: 70.00,
+                      fit: BoxFit.fitWidth,
+                    ),
                     title: Text(product.title),
+                    subtitle: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(product.brand),
+                        Row(
+                          children: [
+                            Text(product.rating.toStringAsFixed(1)),
+                            for (int i = 0; i < product.rating.toInt(); i++)
+                              const Icon(
+                                Icons.star,
+                                size: 12,
+                              ),
+                          ],
+                        ),
+                      ],
+                    ),
                     onTap: () {
                       // 5. Navegação para a tela de detalhe de produto enviando o objeto completo já coletado na request
                       Navigator.push(
